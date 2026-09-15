@@ -18,3 +18,14 @@ def add_indicators(df, window=20):
     df["ma"]  = df["close"].rolling(window).mean()
     df["vol"] = df["ret"].rolling(window).std()
     return df
+
+
+def data_quality_report(df):
+    """Checking missing and unique data"""
+    a = df.isna().sum()
+    b = df.nunique()
+    table = pd.DataFrame({
+        "Total NaN": a,
+        "Unique": b,
+    })
+    return table
